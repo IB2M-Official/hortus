@@ -86,7 +86,7 @@ function displayWeatherInCalendar(dailyData) {
 
     const card = document.createElement("div");
     card.className = "day-card";
-    card.style.background = `url('./assets/icons/${iconFile}') no-repeat center center`;
+    card.style.background = `url('${iconFile}') no-repeat center center`;
     card.style.backgroundSize = 'contain';
     card.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
     card.style.display = "flex";

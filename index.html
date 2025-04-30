@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Potager</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Barre latérale gauche -->
+    <aside class="sidebar">
+      <h2>Paramètres</h2>
+      <label for="location">Localisation :</label>
+      <input type="text" id="location" placeholder="Ex: Lyon">
+
+      <h3>Mon potager</h3>
+      <label for="gardenName">Nom :</label>
+      <input type="text" id="gardenName" placeholder="Mon jardin">
+
+      <label for="plants">Légumes :</label>
+      <textarea id="plants" placeholder="Tomates, carottes..."></textarea>
+
+      <button id="saveSettings">Sauvegarder</button>
+    </aside>
+
+    <!-- Contenu principal -->
+    <main>
+      <!-- Barre supérieure -->
+      <header>
+        <div class="top-info">
+          <h1>Mon Potager</h1>
+          <div class="today-info">
+            <span id="date"></span> | 
+            <span id="season"></span> | 
+            <span id="weather"></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Calendrier scrollable -->
+      <section class="calendar-container" id="calendarContainer">
+        <!-- Les jours seront insérés ici dynamiquement -->
+      </section>
+    </main>
+
+    <!-- Encart à droite -->
+    <aside class="info-panel">
+      <h2>Conseils du mois</h2>
+      <div id="monthlyTips">
+        <!-- Saisons, légumes à planter/récolter -->
+      </div>
+
+      <h2>Conseil IA</h2>
+      <div id="aiAdvice">
+        <!-- Conseils de Mistral -->
+      </div>
+    </aside>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="mistral.js"></script>
+</body>
+</html>

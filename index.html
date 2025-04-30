@@ -46,23 +46,27 @@
 
     <!-- Encart à droite -->
     <aside class="info-panel">
-      <h2>Conseils du mois</h2>
-      <div id="monthlyTips">
-        <!-- Saisons, légumes à planter/récolter -->
-      </div>
+  <h2>Conseils du mois</h2>
+  <div id="monthlyTips">
+    <!-- Saisons, légumes à planter/récolter -->
+  </div>
 
-      <h2>Conseil IA</h2>
-      <div class="scrollable-advice" id="aiAdvice">
-      <form id="chatForm">
-          <input type="text" id="chatInput" placeholder="Pose une question à l'IA..." />
-          <button type="submit">Envoyer</button>
-        </form>
-      <div id="aiAdvice">
-        <div id="chatBox"></div>
-        <!-- Conseils de Mistral -->
-      </div>
-        </div>
-    </aside>
+  <h2>Conseil IA</h2>
+
+  <!-- Formulaire de question -->
+  <form id="chatForm" style="display: flex; gap: 8px; margin-bottom: 10px;">
+    <input type="text" id="chatInput" placeholder="Pose une question à l'IA..." style="flex: 1; padding: 8px; border-radius: 6px; border: 1px solid #ccc;" />
+    <button type="submit" style="padding: 8px 12px; border: none; background: #6cbf43; color: white; border-radius: 6px;">Envoyer</button>
+  </form>
+
+  <!-- Zone scrollable fixe -->
+  <div id="aiAdvice" class="scrollable-advice">
+    <div id="chatBox">
+      <!-- Réponses IA affichées ici -->
+    </div>
+  </div>
+</aside>
+
   </div>
   <script src="plantingData.js"></script>
   <script src="script.js"></script>

@@ -21,12 +21,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   await updateWeatherAndCalendar(savedLocation);
   displayMonthlyTips();
   getMistralAdvice();
+  gardenNameInput.value = localStorage.getItem("gardenName") || "";
+  plantsInput.value = localStorage.getItem("plants") || "";
+
 });
 
 document.getElementById("saveSettings").addEventListener("click", async () => {
   const location = locationInput.value;
   localStorage.setItem("location", location);
   await updateWeatherAndCalendar(location);
+  localStorage.setItem("gardenName", gardenNameInput.value);
+  localStorage.setItem("plants", plantsInput.value);
+
 });
 
 function updateDateUI() {
@@ -149,3 +155,25 @@ function getMistralAdvice() {
       aiAdvice.textContent = "(Erreur IA)";
     });
 }
+
+const chatForm = document.getElementById("chatForm");
+const chatInput = document.getElementById("chatInput");
+const chatBox = document.getElementById("chatBox");
+
+chatForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const question = chatInput.value;
+  if (!question.trim()) return;
+  chatBox.innerHTML += `<div class="user-msg"><strong>Moi:</strong> ${question}</div>`;
+  chatInput.value = "";
+
+  try {
+    const response = await fetchMistralAI(question);
+    chatBox.innerHTML += `<div class="ai-msg"><strong>IA:</strong> ${response}</div>`;
+  } catch {
+    chatBox.innerHTML += `<div class="ai-msg error">(Erreur de réponse de l'IA)</div>`;
+  }
+
+  chatBox.scrollTop = chatBox.scrollHeight;
+});
+

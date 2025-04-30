@@ -52,13 +52,55 @@ async function updateWeatherAndCalendar(location) {
   try {
     const coords = await getCoordinates(location);
     const weatherData = await getWeatherForecast(coords.latitude, coords.longitude);
+    const today = new Date().toISOString().split('T')[0];
+    const todayIndex = weatherData.time.findIndex(date => date === today);
+
+    if (todayIndex !== -1) {
+      const temp = `${weatherData.temperature_2m_min[todayIndex]}°C - ${weatherData.temperature_2m_max[todayIndex]}°C`;
+      weatherSpan.textContent = `${temp} à ${location}`;
+    } else {
+      weatherSpan.textContent = `(Pas de température dispo pour aujourd'hui à ${location})`;
+    }
+
     displayWeatherInCalendar(weatherData);
-    const todayIndex = new Date().getDate() - 1;
-    const temp = `${weatherData.temperature_2m_min[todayIndex]}°C - ${weatherData.temperature_2m_max[todayIndex]}°C`;
-    weatherSpan.textContent = `${temp} à ${location}`;
+    displayMonthlyTips(); // rafraîchit les légumes aussi
+    getMistralAdvice(weatherData, todayIndex); // météo + légumes dans les conseils IA
   } catch (e) {
     weatherSpan.textContent = "(Erreur météo)";
     console.error(e);
+  }
+}
+
+function displayWeatherInCalendar(dailyData) {
+  calendarContainer.innerHTML = "";
+  const days = dailyData.time.length;
+
+  for (let i = 0; i < days; i++) {
+    const date = new Date(dailyData.time[i]);
+    const day = date.getDate();
+    const month = date.toLocaleString('fr-FR', { month: 'long' });
+    const tempMin = dailyData.temperature_2m_min[i];
+    const tempMax = dailyData.temperature_2m_max[i];
+    const weatherCode = dailyData.weathercode[i];
+    const iconFile = getWeatherIcon(weatherCode);
+
+    const card = document.createElement("div");
+    card.className = "day-card";
+    card.style.background = `url('./assets/icons/${iconFile}') no-repeat center center`;
+    card.style.backgroundSize = 'contain';
+    card.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+    card.style.display = "flex";
+    card.style.flexDirection = "column";
+    card.style.justifyContent = "flex-end";
+    card.style.padding = "8px";
+    card.style.color = "white";
+    card.style.textShadow = "1px 1px 3px #000";
+
+    card.innerHTML = `
+      <h4>${day} ${month}</h4>
+      <span class="temperature">${tempMin}°C - ${tempMax}°C</span>
+    `;
+    calendarContainer.appendChild(card);
   }
 }
 
@@ -81,30 +123,7 @@ async function getWeatherForecast(lat, lon) {
   return (await res.json()).daily;
 }
 
-function displayWeatherInCalendar(dailyData) {
-  calendarContainer.innerHTML = "";
-  const days = dailyData.time.length;
 
-  for (let i = 0; i < days; i++) {
-    const date = new Date(dailyData.time[i]);
-    const day = date.getDate();
-    const month = date.toLocaleString('fr-FR', { month: 'long' });
-    const tempMin = dailyData.temperature_2m_min[i];
-    const tempMax = dailyData.temperature_2m_max[i];
-    const weatherCode = dailyData.weathercode[i];
-
-    const card = document.createElement("div");
-    card.className = "day-card";
-    card.style.backgroundImage = `url('${getWeatherIcon(weatherCode)}')`;
-    card.style.backgroundSize = 'cover';
-    card.style.backgroundPosition = 'center';
-    card.innerHTML = `
-      <h4>${day} ${month}</h4>
-      <span class="temperature">${tempMin}°C - ${tempMax}°C</span>
-    `;
-    calendarContainer.appendChild(card);
-  }
-}
 
 function getWeatherIcon(code) {
   const icons = {
@@ -143,11 +162,35 @@ function displayMonthlyTips() {
   `;
 }
 
-function getMistralAdvice() {
+function getMistralAdvice(weatherData, todayIndex) {
   const gardenName = gardenNameInput.value || "mon jardin";
   const plants = plantsInput.value;
 
-  fetchMistralAI(`Que dois-je faire aujourd'hui dans ${gardenName} avec ${plants}? Réponse Rapide, concise, aérée, en 3 lignes.`)
+  // météo
+  const todayCode = weatherData?.weathercode?.[todayIndex];
+  const weatherIcon = getWeatherIcon(todayCode).replace(".png", "");
+  const tempMin = weatherData?.temperature_2m_min?.[todayIndex];
+  const tempMax = weatherData?.temperature_2m_max?.[todayIndex];
+  const weatherLabel = weatherIcon.replace("_", " ");
+
+  // légumes du mois
+  const month = new Date().toLocaleString('fr-FR', { month: 'long' });
+  const tips = plantingCalendar[month];
+  const semis = tips.semis.join(', ');
+  const plantation = tips.plantation.join(', ');
+  const recolte = tips.recolte.join(', ');
+
+  const prompt = `
+Tu es un assistant pour jardinier. Aujourd'hui il fait ${weatherLabel}, avec des températures entre ${tempMin}°C et ${tempMax}°C.
+Dans le jardin "${gardenName}", l'utilisateur a planté : ${plants}.
+Voici les légumes du mois :
+- À semer : ${semis}
+- À planter : ${plantation}
+- À récolter : ${recolte}
+
+Donne un conseil personnalisé pour aujourd’hui. Sois bref, clair, et pratique.`;
+
+  fetchMistralAI(prompt)
     .then(response => {
       aiAdvice.textContent = response;
     })
@@ -155,6 +198,7 @@ function getMistralAdvice() {
       aiAdvice.textContent = "(Erreur IA)";
     });
 }
+
 
 const chatForm = document.getElementById("chatForm");
 const chatInput = document.getElementById("chatInput");

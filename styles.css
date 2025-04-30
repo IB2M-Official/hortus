@@ -35,7 +35,7 @@ body {
 
 .sidebar input,
 .sidebar textarea {
-  width: 300px;
+  width: 250px;
   padding: 8px;
   margin-top: 4px;
   border: 1px solid #ccc;
@@ -79,6 +79,7 @@ header {
 .calendar-container {
   flex: 1;
   overflow-y: auto;
+  overflow-x: auto;
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -112,8 +113,8 @@ header {
 /* MODIFIÉ : température bien visible */
 .temperature {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  top: 10px;
+  right: 10px;
   font-weight: bold;
   color: white;
   text-shadow: 1px 1px 2px black;
@@ -122,7 +123,9 @@ header {
 /* Bloc IA : taille fixe + scroll */
 .scrollable-advice {
   max-height: 200px;
+  max-width: 200px;
   overflow-y: auto;
+  overflow-x: auto;
   padding: 10px;
   border: 1px solid #eee;
   border-radius: 8px;

@@ -1,7 +1,7 @@
 // mistral.js
 
 async function fetchMistralAI(promptText) {
-  const apiKey = "VOTRE_CLE_API_MISTRAL"; // Remplacer par votre vraie clé API
+  const apiKey = "CjVcFT9mRjOtTqG7er5Z5uYe4Y6h2yjU"; // Remplacer par votre vraie clé API
   const endpoint = "https://api.mistral.ai/v1/chat/completions";
 
   const payload = {

@@ -7,7 +7,7 @@ async function fetchMistralAI(promptText) {
   const payload = {
     model: "mistral-small", // ou le modèle Mistral que vous utilisez
     messages: [
-      { role: "system", content: "Tu es un expert du jardinage et des potagers à petite échelle. Il faut que tu donne une liste de choses a faire des conseils, rapides, concis, de manière aéré en quelques lignes." },
+      { role: "system", content: "Tu es un expert du jardinage et des potagers à petite échelle. Il faut que tu donne une liste de choses a faire des conseils, rapides, concis, de manière aéré en 3 lignes." },
       { role: "user", content: promptText }
     ],
     temperature: 0.7

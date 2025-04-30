@@ -123,6 +123,7 @@ header {
 /* AJOUTÉ : zone de scroll pour les conseils IA */
 .scrollable-advice {
   max-height: 300px;
+  max-width: 250px;
   overflow-y: auto;
   padding: 10px;
   border: 1px solid #eee;

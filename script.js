@@ -145,7 +145,7 @@ function displayMonthlyTips() {
 
 function getMistralAdvice() {
   const gardenName = gardenNameInput.value || "mon jardin";
-  const plants = plantsInput.value || "tomates, salades";
+  const plants = plantsInput.value;
 
   fetchMistralAI(`Que dois-je faire aujourd'hui dans ${gardenName} avec ${plants}?`)
     .then(response => {

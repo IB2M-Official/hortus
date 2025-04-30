@@ -102,29 +102,29 @@ function displayWeatherInCalendar(dailyData) {
 
 function getWeatherIcon(code) {
   const icons = {
-    0: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/sunny.png",
-    1: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/partly_cloudy.png",
-    2: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/cloudy.png",
-    3: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/mostlycloudy.png",
-    45: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/fog.png",
-    48: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/fog.png",
-    51: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/sleet.png",
-    53: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/sleet.png",
-    55: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/sleet.png",
-    61: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/rain.png",
-    63: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/rain.png",
-    65: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/rain.png",
-    71: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/snow.png",
-    73: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/snow.png",
-    75: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/snow.png",
-    80: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/chancerain.png",
-    81: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/chancerain.png",
-    82: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/chancerain.png",
-    95: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/tstorms.png",
-    96: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/tstorms.png",
-    99: "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/tstorms.png"
+    0: "assets/icons/sunny.png",
+    1: "assets/icons/partly_cloudy.png",
+    2: "assets/icons/cloudy.png",
+    3: "assets/icons/mostlycloudy.png",
+    45: "assets/icons/64x64/fog.png",
+    48: "assets/icons/fog.png",
+    51: "assets/icons/sleet.png",
+    53: "assets/icons/sleet.png",
+    55: "assets/icons/sleet.png",
+    61: "assets/icons/rain.png",
+    63: "assets/icons/rain.png",
+    65: "assets/icons/rain.png",
+    71: "assets/icons/snow.png",
+    73: "assets/icons/snow.png",
+    75: "assets/icons/snow.png",
+    80: "assets/icons/chancerain.png",
+    81: "assets/icons/chancerain.png",
+    82: "assets/icons/chancerain.png",
+    95: "assets/icons/tstorms.png",
+    96: "assets/icons/tstorms.png",
+    99: "assets/icons/tstorms.png"
   };
-  return icons[code] || "https://github.com/manifestinteractive/weather-underground-icons/tree/master/dist/icons/black/png/64x64/unknown.png";
+  return icons[code] || "assets/icons/unknown.png";
 }
 
 function displayMonthlyTips() {

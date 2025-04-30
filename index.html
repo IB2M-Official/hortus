@@ -8,7 +8,6 @@
 </head>
 <body>
   <div class="app-container">
-    <!-- Barre latérale gauche -->
     <aside class="sidebar">
       <h2>Paramètres</h2>
       <label for="location">Localisation :</label>
@@ -24,9 +23,7 @@
       <button id="saveSettings">Sauvegarder</button>
     </aside>
 
-    <!-- Contenu principal -->
     <main>
-      <!-- Barre supérieure -->
       <header>
         <div class="top-info">
           <h1>Mon Potager</h1>
@@ -38,38 +35,25 @@
         </div>
       </header>
 
-      <!-- Calendrier scrollable -->
-      <section class="calendar-container" id="calendarContainer">
-        <!-- Les jours seront insérés ici dynamiquement -->
-      </section>
+      <section class="calendar-container" id="calendarContainer"></section>
     </main>
 
-    <!-- Encart à droite -->
     <aside class="info-panel">
-  <h2>Conseils du mois</h2>
-  <div id="monthlyTips">
-    <!-- Saisons, légumes à planter/récolter -->
+      <h2>Conseils du mois</h2>
+      <div id="monthlyTips"></div>
+
+      <h2>Conseil IA</h2>
+      <form id="chatForm" class="chat-form">
+        <input type="text" id="chatInput" placeholder="Pose une question à l'IA..." />
+        <button type="submit">Envoyer</button>
+      </form>
+      <div class="scrollable-advice" id="chatBox"></div>
+      <div id="aiAdvice"></div>
+    </aside>
   </div>
 
-  <h2>Conseil IA</h2>
-
-  <!-- Formulaire de question -->
-  <form id="chatForm" style="display: flex; gap: 8px; margin-bottom: 10px;">
-    <input type="text" id="chatInput" placeholder="Pose une question à l'IA..." style="flex: 1; padding: 8px; border-radius: 6px; border: 1px solid #ccc;" />
-    <button type="submit" style="padding: 8px 12px; border: none; background: #6cbf43; color: white; border-radius: 6px;">Envoyer</button>
-  </form>
-
-  <!-- Zone scrollable fixe -->
-  <div id="aiAdvice" class="scrollable-advice">
-    <div id="chatBox">
-      <!-- Réponses IA affichées ici -->
-    </div>
-  </div>
-</aside>
-
-  </div>
   <script src="plantingData.js"></script>
-  <script src="script.js"></script>
   <script src="mistral.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

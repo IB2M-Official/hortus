@@ -147,7 +147,7 @@ function getMistralAdvice() {
   const gardenName = gardenNameInput.value || "mon jardin";
   const plants = plantsInput.value;
 
-  fetchMistralAI(`Que dois-je faire aujourd'hui dans ${gardenName} avec ${plants}?`)
+  fetchMistralAI(`Que dois-je faire aujourd'hui dans ${gardenName} avec ${plants}? Réponse Rapide, concise, aérée, en 3 lignes.`)
     .then(response => {
       aiAdvice.textContent = response;
     })

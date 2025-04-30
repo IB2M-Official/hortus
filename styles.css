@@ -134,6 +134,20 @@ header {
   line-height: 1.4;
 }
 
+#aiAdvice {
+  max-height: 200px;
+  max-width: 200px;
+  overflow-y: auto;
+  overflow-x: auto;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background: #fafafa;
+  font-size: 14px;
+  line-height: 1.4;
+  
+}
+
 
 /* BONUS : meilleure lisibilité sur mobile */
 @media screen and (max-width: 900px) {

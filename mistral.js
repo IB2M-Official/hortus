@@ -5,7 +5,7 @@ async function fetchMistralAI(promptText) {
   const endpoint = "https://api.mistral.ai/v1/chat/completions";
 
   const payload = {
-    model: "mistral-small", // ou le modèle Mistral que vous utilisez
+    model: "ministral-3b-latest", // ou le modèle Mistral que vous utilisez
     messages: [
       { role: "system", content: "Tu es un expert du jardinage et des potagers à petite échelle. Soit rapide, concis, et que la réponse ne dépasse pas plus de 2 lignes." },
       { role: "user", content: promptText }
